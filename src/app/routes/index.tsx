@@ -6,7 +6,7 @@ export const Routes = () => {
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/entar" element={<Login />} />
+                <Route path="/entrar" element={<Login />} />
                 <Route path="/pagina-inicial" element={<Dashboard />} />
 
                 <Route path="*" element={<Navigate to="/pagina-inicial" />} />
