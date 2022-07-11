@@ -1,12 +1,24 @@
 import { useRef, useState } from "react";
+import { useUsuarioLogado } from "../../shared/hooks";
+import { ButtonLogin } from "./components/ButtonLogin";
 import { InputLogin } from "./components/InputLogin";
 
 export const Login = () => {
 
     const inputPasswordRef = useRef<HTMLInputElement>(null);
+    const inputEmailRef = useRef<HTMLInputElement>(null);
+    const { nomeDoUsuario } = useUsuarioLogado();
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+
+    const handleCleaning = () => {
+
+        setEmail("");
+        setSenha("");
+        inputEmailRef.current?.focus()
+
+    }
     
     const handleLogin = () => {
 
@@ -28,6 +40,8 @@ export const Login = () => {
         <div>
             <h1>TELA DE LOGIN</h1>
 
+            <p>Olá {nomeDoUsuario}</p>
+
             <form action="" name="form-login">
                 
                 <InputLogin
@@ -35,22 +49,27 @@ export const Login = () => {
                     value={email}
                     type="email"
                     placeholder="Digite seu e-mail"
+                    name="email"
                     onChange={setEmail}
                     onPressEnter={() => inputPasswordRef.current?.focus()}
+                    ref={inputEmailRef}
                 />
 
                 <InputLogin
                     label="Senha"
                     value={senha}
                     type="password"
+                    name="senha"
                     placeholder="Digite sua senha"
                     onChange={setSenha}
                     ref={inputPasswordRef}
                 />
 
-                <button type="button" onClick={handleLogin}>
-                    Entrar
-                </button>
+                <div>
+                    <ButtonLogin type="button" onClick={handleLogin}>Entrar</ButtonLogin>
+                    <ButtonLogin onClick={handleCleaning} type="reset">Limpar</ButtonLogin>
+                </div>
+
             </form>
         </div>
     );
