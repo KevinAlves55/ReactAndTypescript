@@ -7,7 +7,9 @@ export const Login = () => {
 
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const inputEmailRef = useRef<HTMLInputElement>(null);
+
     const { nomeDoUsuario } = useUsuarioLogado();
+    
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
